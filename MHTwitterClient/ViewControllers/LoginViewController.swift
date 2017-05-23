@@ -57,7 +57,13 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func onLoginButton() {
-    
+    TwitterClient.sharedInstance?.login(success: {
+        [weak self] in
+        print("Logged in")
+        self?.dismiss(animated: true, completion: nil)
+    }, failure: { (error) in
+        print(error)
+    })
     }
 
     func addGradient() {

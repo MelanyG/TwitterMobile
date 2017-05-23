@@ -14,7 +14,7 @@ class SplashViewController: UIViewController, TwitterLoginProtocol {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        TwitterClient.sharedInstance?.delegate = self
         // Do any additional setup after loading the view.
     }
     
@@ -33,8 +33,16 @@ class SplashViewController: UIViewController, TwitterLoginProtocol {
         self.performSegue(withIdentifier: "LoginSegue", sender: self)
     }
     
+    func goToApp() {
+        self.performSegue(withIdentifier: "TabSegue", sender: self)
+    }
+    
     func continueLogin() {
         appDelegate.splashDelay = false
+        if User.currentUser == nil {
         goToLogin()
+        } else {
+        goToApp()
+        }
     }
 }

@@ -43,6 +43,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Saves changes in the application's managed object context before the application terminates.
     }
 
+    func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
+        TwitterClient.sharedInstance?.handleOpenURL(url: url)
+        
+        return true
+    }
 }
 
 func delay(_ delay:Double, closure:@escaping ()->()) {
